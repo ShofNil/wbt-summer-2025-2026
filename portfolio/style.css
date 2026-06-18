@@ -32,12 +32,7 @@ a{
     
 }
 
-@keyframes display-text {
-    25%,100%{
-        display: none;
 
-    }
-}
 .navbar ul{
     display: flex;
     list-style: none;
@@ -88,12 +83,41 @@ a{
     background-color: rgb(1, 76, 76);
 }
 .home-info h2 span{
+    position: relative;
     display: inline-block;
     color: transparent;
-    -webkit-text-stroke: .7px rgb(0, 255, 89);
+    -webkit-text-stroke: .7px  rgb(21, 204, 254);
     animation: display-text 16s linear infinite;
     animation-delay: calc(-4s*var(--i));
 }
+
+@keyframes display-text {
+    25%,100%{
+        display: none;
+
+    }
+}
+
+.home-info h2 span::before{
+    content: attr(data-text);
+    position: absolute;
+    width: 0;
+    border-right: 2px solid rgb(21, 204, 254);
+    color: rgb(21, 204, 254);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: fill-text 4s linear infinite;
+}
+
+@keyframes fill-text {
+    10%,100%{
+        width: 0;
+    }
+    70%,00%{
+        width: 100%;
+    }
+}
+
 .home-info p{
     font-size: 18px;
     margin: 20px 0 25px;
@@ -163,6 +187,16 @@ a{
     width: 500px;
     height: 500px;
     background: conic-gradient(transparent, transparent, transparent, rgb(21, 204, 254));
+    transform: rotate(0deg);
+    animation: rotate-border 8s linear infinite;
+}
+.home-img .img-box::after{
+    animation-delay: -4s;
+}
+@keyframes rotate-border {
+    100%{
+        transform: rotate(360deg);
+    }
 }
 
 .home-img .img-box .img-item{
